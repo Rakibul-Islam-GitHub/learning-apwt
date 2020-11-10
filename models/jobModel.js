@@ -16,7 +16,7 @@ module.exports= {
 
 	},
 	getAll: function(callback){
-		var sql = "select * from user";
+		var sql = "select * from job";
 		db.getResults(sql, function(results){
 			callback(results);
 		});
@@ -32,10 +32,27 @@ module.exports= {
 		});
 
 	},
-	update:function(user, callback){
+	update:function(job, callback){
+        let sql= 'update job set companyname= "'+job.comname+'", title= "'+job.title+'", location= "'+job.location+'", salary= "'+job.salary+'"';
+		db.execute(sql, function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
 
 	},
 	delete: function(id, callback){
+
+        let sql= 'delete from job where id= "'+id.id+'" ';
+		db.execute(sql, function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
 
 	}
 }

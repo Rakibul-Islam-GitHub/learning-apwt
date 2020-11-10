@@ -9,6 +9,7 @@ const logout			= require('./controllers/logout');
 const home				= require('./controllers/home');
 const user				= require('./controllers/user');
 const employer				= require('./controllers/employer');
+const job				= require('./controllers/job');
 
 const app				= express();
 const port				= 3000;
@@ -29,6 +30,7 @@ app.use('/home', home);
 app.use('/logout', logout);
 app.use('/user', user);
 app.use('/employer', employer);
+app.use('/job', job);
 
 //router
 app.get('/', (req, res)=>{

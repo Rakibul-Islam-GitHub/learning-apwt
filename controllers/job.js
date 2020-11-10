@@ -13,7 +13,7 @@ router.get('*',  (req, res, next)=>{
 
 router.get('/joblist', (req, res)=>{
 
-	userModel.getAll(function(results){
+	jobModel.getAll(function(results){
 		res.render('job/joblist', {job: results});
 	});
 
@@ -21,7 +21,7 @@ router.get('/joblist', (req, res)=>{
 
 
 router.get('/create', (req, res)=>{
-	res.render('employer/create');
+	res.render('/job/create');
 });
 
 
@@ -37,7 +37,7 @@ router.post('/create', (req, res)=>{
 				
 
 			};
-			userModel.insert(job, function(status){
+			jobModel.insert(job, function(status){
 
 				if(status){
 					console.log('job inserted');
@@ -56,20 +56,50 @@ router.get('/edit/:id', (req, res)=>{
 		password: 'test',
 		
 	};
-	res.render('employer/edit', user);
+	res.render('job/edit', user);
 });
 
 router.post('/edit/:id', (req, res)=>{
-	res.redirect('/employer/joblist');
+
+    let job={
+        comname : req.body.comname,
+        title : req.body.title,
+        location : req.body.location,
+        salary: req.body.salary,
+    
+    
+    };
+    jobModel.update(job, function(status){
+
+        if(status){
+            console.log('job updated');
+            res.redirect('/job/joblist');
+        }else{
+
+        }
+
+    });
+
+	res.redirect('/job/joblist');
 });
 
 router.get('/delete/:id', (req, res)=>{
-	var user = {username: 'alamin', password: '123', email: 'email@gmail.com'};
-	res.render('employer/delete', user);
+	
+	res.render('job/delete', user);
 });
 
 router.post('/delete/:id', (req, res)=>{
-	res.redirect('/employer/joblist');
+    let id={
+        id : req.params.id
+
+    };
+
+    jobModel.delete(function(id){
+        
+        res.redirect('/job/joblist');
+	});
+
+	
 });
 
 
