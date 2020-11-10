@@ -74,13 +74,30 @@ router.post('/edit/:id', (req, res)=>{
 
 router.get('/delete/:id', (req, res)=>{
 
+	userModel.getAll(function(results){
+		let user={
+			name : results.name
+
+		};
+	});
+
 
 	
 	res.render('employer/delete', user);
 });
 
 router.post('/delete/:id', (req, res)=>{
-	res.redirect('/home/employerlist');
+
+	let id={
+        id : req.params.id
+
+    };
+
+    userModel.delete(function(id){
+        
+        res.redirect('/home/employerlist');
+	});
+	// res.redirect('/home/employerlist');
 });
 
 router.get('/userlist', (req, res)=>{
