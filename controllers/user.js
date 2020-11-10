@@ -40,27 +40,56 @@ router.post('/create', (req, res)=>{
 });
 
 router.get('/edit/:id', (req, res)=>{
-
-	var user = {
-		username: 'test',
-		password: 'test',
-		email: 'rakibul@gmail.com'
-	};
-	res.render('admin/edit', user);
+  let user={
+	  name: "employer"
+  };
+	
+	res.render('employer/edit', user);
 });
 
 router.post('/edit/:id', (req, res)=>{
+	let user={
+		name : req.body.name,
+		company : req.body.company,
+		contact : req.body.contact,
+		username: req.body.username,
+		password: req.body.password
+		
+
+	};
+
+	userModel.update(user, function(status){
+
+        if(status){
+            console.log('user updated');
+            res.redirect('/home/employerlist');
+        }else{
+
+        }
+
+	});
+	
 	res.redirect('/home/userlist');
 });
 
 router.get('/delete/:id', (req, res)=>{
-	var user = {username: 'alamin', password: '123', email: 'email@gmail.com'};
-	res.render('admin/delete', user);
+
+
+	
+	res.render('employer/delete', user);
 });
 
 router.post('/delete/:id', (req, res)=>{
-	res.redirect('/home/userlist');
+	res.redirect('/home/employerlist');
 });
+
+router.get('/userlist', (req, res)=>{
+
+	userModel.getAll(function(results){
+		res.render('home/employerlist', {users: results});
+	});
+
+})
 
 module.exports = router;
 

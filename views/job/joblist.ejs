@@ -22,13 +22,13 @@
 		
 	
 		<% 
-			users.forEach( function(emp){ %>
+			users.forEach( function(job){ %>
 			<tr>
-				<td><%= emp.id %></td>
-				<td><%= emp.comname %></td>
-				<td><%= emp.title %></td>
-				<td><%= emp.location %></td>
-				<td><%= emp.salary %></td>
+				<td><%= job.id %></td>
+				<td><%= job.comname %></td>
+				<td><%= job.title %></td>
+				<td><%= job.location %></td>
+				<td><%= job.salary %></td>
 				<td>
 					<a href="/user/edit/<%= emp.id %>">Edit</a> |
 					<a href="/user/delete/<%= emp.id %>">Delete</a>

@@ -15,12 +15,12 @@ module.exports= {
 	getById: function(id, callback){
 
 	},
-	// getAll: function(callback){
-	// 	var sql = "select * from user";
-	// 	db.getResults(sql, function(results){
-	// 		callback(results);
-	// 	});
-	// },
+	getAll: function(callback){
+		var sql = "select * from user";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
 	insert: function(user, callback){
 		let sql= 'insert into user (name, company,contact, username, password) values ("'+user.name+'","'+user.company+'","'+user.contact+'","'+user.username+'","'+user.password+'") ';
 		db.execute(sql, function(status){
@@ -34,8 +34,25 @@ module.exports= {
 	},
 	update:function(user, callback){
 
+		let sql= 'update user set name= "'+user.name+'", company= "'+user.company+'", contact= "'+user.contact+'", username= "'+user.username+'", password= "'+user.passsword+'"';
+		db.execute(sql, function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+
 	},
 	delete: function(id, callback){
+		let sql= 'delete from user where id= "'+id.id+'" ';
+		db.execute(sql, function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
 
 	}
 }

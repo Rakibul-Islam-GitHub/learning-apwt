@@ -21,7 +21,7 @@ router.get('/joblist', (req, res)=>{
 
 
 router.get('/create', (req, res)=>{
-	res.render('/job/create');
+	res.render('job/create');
 });
 
 
