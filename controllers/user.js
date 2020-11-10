@@ -11,7 +11,7 @@ router.get('*',  (req, res, next)=>{
 });
 
 router.get('/create', (req, res)=>{
-	res.render('employer/create');
+	res.render('admin/create');
 });
 
 
@@ -44,9 +44,9 @@ router.get('/edit/:id', (req, res)=>{
 	var user = {
 		username: 'test',
 		password: 'test',
-		email: 'alamin@aiub.edu'
+		email: 'rakibul@gmail.com'
 	};
-	res.render('employer/edit', user);
+	res.render('admin/edit', user);
 });
 
 router.post('/edit/:id', (req, res)=>{
@@ -55,7 +55,7 @@ router.post('/edit/:id', (req, res)=>{
 
 router.get('/delete/:id', (req, res)=>{
 	var user = {username: 'alamin', password: '123', email: 'email@gmail.com'};
-	res.render('employer/delete', user);
+	res.render('admin/delete', user);
 });
 
 router.post('/delete/:id', (req, res)=>{
