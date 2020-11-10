@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User List</title>
+</head>
+<body>
+	<h1> Userlist</h1>
+
+	<a href="/home">Back</a> | 
+	<a href="/logout">logout</a> 
+	<br>
+
+	<table border="1">
+		<tr>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Company</td>
+			<td>Contact</td>
+			<td>Username</td>
+			<td>Username</td>
+		</tr>
+		
+	
+		<% 
+			users.forEach( function(emp){ %>
+			<tr>
+				<td><%= emp.name %></td>
+				<td><%= emp.company %></td>
+				<td><%= emp.contact %></td>
+				<td><%= emp.username %></td>
+				<td><%= emp.password %></td>
+				<td>
+					<a href="/user/edit/<%= emp.id %>">Edit</a> |
+					<a href="/user/delete/<%= emp.id %>">Delete</a>
+				</td>
+			</tr>
+
+		<%
+			}); 
+		%>
+		
+	</table>
+
+</body>
+</html>
