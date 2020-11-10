@@ -11,8 +11,19 @@ router.get('*',  (req, res, next)=>{
 });
 
 router.get('/', (req, res)=>{
-	let name= 'Employer Page';
-	res.render('employer/index', name);
+
+	userModel.getAll(function(results){
+		
+		let name= {
+			name : results[0].name
+			
+	
+		};
+		res.render('employer/index', name);
+	});
+
+	
+	
 });
 
 

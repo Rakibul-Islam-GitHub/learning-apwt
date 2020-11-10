@@ -34,7 +34,8 @@ app.use('/job', job);
 
 //router
 app.get('/', (req, res)=>{
-	res.send('Welcome');
+	res.render('home/welcomepage');
+	
 });
 
 //server startup

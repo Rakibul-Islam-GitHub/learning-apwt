@@ -24,7 +24,7 @@ router.post('/', (req, res)=>{
 		if(status){
 			res.cookie('uname', req.body.username);
 
-			if(req.body.username="admin"){
+			if(req.body.username=="admin"){
 				res.redirect('/home');
 
 			}else{

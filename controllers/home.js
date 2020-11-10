@@ -14,6 +14,13 @@ router.get('/', (req, res)=>{
 	res.render('home/index', {name: 'Admin'});
 });
 
+router.get('/employerlist', (req, res)=>{
+
+	userModel.getAll(function(results){
+		res.render('home/employerlist', {users: results});
+	});
+
+})
 
 
 

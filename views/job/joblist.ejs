@@ -6,7 +6,7 @@
 <body>
 	<h1> Job list</h1>
 
-	<a href="/home">Back</a> | 
+	<a href="/employer">Back</a> | 
 	<a href="/logout">logout</a> 
 	<br>
 
@@ -17,21 +17,22 @@
 			<td>Job title</td>
 			<td>Location</td>
 			<td>Salary</td>
+			<td>Action</td>
 			
 		</tr>
 		
 	
 		<% 
-			users.forEach( function(job){ %>
+			job.forEach( function(job){ %>
 			<tr>
 				<td><%= job.id %></td>
-				<td><%= job.comname %></td>
+				<td><%= job.companyname %></td>
 				<td><%= job.title %></td>
 				<td><%= job.location %></td>
 				<td><%= job.salary %></td>
 				<td>
-					<a href="/user/edit/<%= emp.id %>">Edit</a> |
-					<a href="/user/delete/<%= emp.id %>">Delete</a>
+					<a href="/job/edit/<%= emp.id %>">Edit</a> |
+					<a href="/job/delete/<%= emp.id %>">Delete</a>
 				</td>
 			</tr>
 

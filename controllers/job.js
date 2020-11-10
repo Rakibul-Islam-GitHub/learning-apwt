@@ -1,5 +1,5 @@
 const express 	= require('express');
-const userModel = require.main.require('./models/jobModel');
+const jobModel = require.main.require('./models/jobModel');
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{

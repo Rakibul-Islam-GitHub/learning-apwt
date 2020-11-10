@@ -16,7 +16,7 @@ module.exports= {
 
 	},
 	getAll: function(callback){
-		var sql = "select * from user";
+		var sql = "select * from user where id != 1";
 		db.getResults(sql, function(results){
 			callback(results);
 		});
