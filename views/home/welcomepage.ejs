@@ -8,47 +8,49 @@
        body {
   background-color: #5cb85c !important;
 }
-#msform {
-	width: 400px;
-	margin: 50px auto;
-	text-align: center;
-	position: relative;
+#wc{
+  
+  font-weight: bold;
+  color: rgb(52, 6, 73);
 }
-#msform fieldset {
-	background: white;
-	border: 0 none;
-	border-radius: 3px;
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-	padding: 20px 30px;
-	
-	box-sizing: border-box;
-	width: 80%;
-	margin: 0 10%;
-	position: absolute;
+#wcdiv {
+    margin-top: 15%;
+    text-align: center;
 }
-#msform fieldset:not(:first-of-type) {
-	display: none;
+
+.wcbtn {
+ 
+	background-color:#0e2142;
+	border-radius:18px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+  
 }
+.wcbtn:hover {
+	background-color:#093b3f;
+  text-decoration:none;
+}
+.wcbtn:active {
+	position:relative;
+	top:1px;
+}
+
 
 
    </style>
     <body>
-        <h1 class="text-center">Welcome to Job portal</h1>
-    <form method="POST" id="msform">
-        <fieldset>
-        <h1>Login</h1>
-      <div class="input-group input-group-lg">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-user"> </span></span>
-      <input type="text" name="username" class="form-control" placeholder="Username">
-    </div><br>
-       <div class="input-group input-group-lg">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span></span>
-      <input type="password" name="password" class="form-control" placeholder="•••••••••••">
-    </div>
-      <br>
-          <input type="submit" name="submit" class="btn btn-success">
+      <div id="wcdiv">
+        <h1 id="wc" class="text-center">Welcome to Job portal</h1>
+        <a href="/login" class="wcbtn">Please login</a>
+
+      </div>
+        
     
-        </fieldset>
-    </form>
       </body>
 </html>

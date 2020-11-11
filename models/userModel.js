@@ -13,6 +13,10 @@ module.exports= {
 		});
 	},
 	getById: function(id, callback){
+		var sql = 'select * from user where id = "'+id+'" ';
+		db.getResults(sql, function(results){
+			callback(results);
+		});
 
 	},
 	getAll: function(callback){
@@ -34,7 +38,7 @@ module.exports= {
 	},
 	update:function(user, callback){
 
-		let sql= 'update user set name= "'+user.name+'", company= "'+user.company+'", contact= "'+user.contact+'", username= "'+user.username+'", password= "'+user.passsword+'"';
+		let sql= 'update user set name= "'+user.name+'", company= "'+user.company+'", contact= "'+user.contact+'", username= "'+user.username+'", password= "'+user.password+'" where id= "'+user.id+'"';
 		db.execute(sql, function(status){
 			if(status){
 				callback(true);
@@ -45,7 +49,7 @@ module.exports= {
 
 	},
 	delete: function(id, callback){
-		let sql= 'delete from user where id= "'+id.id+'" ';
+		let sql= 'delete from user where id= "'+id+'" ';
 		db.execute(sql, function(status){
 			if(status){
 				callback(true);

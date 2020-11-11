@@ -40,15 +40,18 @@ router.post('/create', (req, res)=>{
 });
 
 router.get('/edit/:id', (req, res)=>{
-  let user={
-	  name: "employer"
-  };
-	
-	res.render('employer/edit', user);
+	userModel.getAll(function(results){
+		
+		let user= results[0];
+		  
+		  res.render('admin/edit', user);
+	});
+  
 });
 
 router.post('/edit/:id', (req, res)=>{
 	let user={
+		id : req.params.id,
 		name : req.body.name,
 		company : req.body.company,
 		contact : req.body.contact,
@@ -69,31 +72,34 @@ router.post('/edit/:id', (req, res)=>{
 
 	});
 	
-	res.redirect('/home/userlist');
+	// res.redirect('/home/userlist');
 });
 
 router.get('/delete/:id', (req, res)=>{
+	let id= req.params.id;
 
-	userModel.getAll(function(results){
-		let user={
-			name : results.name
+	userModel.getById(id, function(results){
+		console.log(results[0].name);
+		var empname = results[0].name;
+		var empcompany = results[0].company;
+		var empcontact = results[0].contact;
 
-		};
+		res.render('admin/delete', {name: empname, company: empcompany, contact: empcontact});
+
+		
 	});
 
 
 	
-	res.render('employer/delete', user);
+	
 });
 
 router.post('/delete/:id', (req, res)=>{
 
-	let id={
-        id : req.params.id
+	let id= req.params.id;
 
-    };
 
-    userModel.delete(function(id){
+    userModel.delete(id, function(status){
         
         res.redirect('/home/employerlist');
 	});
