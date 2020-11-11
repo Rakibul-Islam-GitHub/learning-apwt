@@ -59,8 +59,9 @@ router.post('/create', (req, res)=>{
 });
 
 router.get('/edit/:id', (req, res)=>{
+	let id= req.params.id;
 
-	jobModel.getAll(function(results){
+	jobModel.getById(id, function(results){
 		
 		let job= results[0];
 		  

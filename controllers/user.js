@@ -40,16 +40,26 @@ router.post('/create', (req, res)=>{
 });
 
 router.get('/edit/:id', (req, res)=>{
-	userModel.getAll(function(results){
+	let id= req.params.id;
+
+	userModel.getById(id, function(results){
+		console.log(results[0].name);
+		var empname = results[0].name;
+		var empcompany = results[0].company;
+		var empcontact = results[0].contact;
+		var empusername = results[0].username;
+		var emppassword = results[0].password;
+
+
+		res.render('admin/edit', {name: empname, company: empcompany, contact: empcontact, username: empusername, password: emppassword});
+
 		
-		let user= results[0];
-		  
-		  res.render('admin/edit', user);
 	});
   
 });
 
 router.post('/edit/:id', (req, res)=>{
+
 	let user={
 		id : req.params.id,
 		name : req.body.name,
@@ -60,8 +70,10 @@ router.post('/edit/:id', (req, res)=>{
 		
 
 	};
+	console.log(user);
 
 	userModel.update(user, function(status){
+
 
         if(status){
             console.log('user updated');
