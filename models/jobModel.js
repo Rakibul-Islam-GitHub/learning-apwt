@@ -13,6 +13,10 @@ module.exports= {
 		});
 	},
 	getById: function(id, callback){
+		var sql = 'select * from job where id = "'+id+'" ';
+		db.getResults(sql, function(results){
+			callback(results);
+		});
 
 	},
 	getAll: function(callback){
@@ -21,8 +25,8 @@ module.exports= {
 			callback(results);
 		});
 	},
-	insert: function(user, callback){
-		let sql= 'insert into user (name, company,contact, username, password) values ("'+user.name+'","'+user.company+'","'+user.contact+'","'+user.username+'","'+user.password+'") ';
+	insert: function(job, callback){
+		let sql= 'insert into job (companyname, title,location, salary) values ("'+job.comname+'","'+job.title+'","'+job.location+'","'+job.salary+'")';
 		db.execute(sql, function(status){
 			if(status){
 				callback(true);
@@ -33,7 +37,7 @@ module.exports= {
 
 	},
 	update:function(job, callback){
-        let sql= 'update job set companyname= "'+job.comname+'", title= "'+job.title+'", location= "'+job.location+'", salary= "'+job.salary+'"';
+        let sql= 'update job set companyname= "'+job.comname+'", title= "'+job.title+'", location= "'+job.location+'", salary= "'+job.salary+'" where id= "'+job.id+'"';
 		db.execute(sql, function(status){
 			if(status){
 				callback(true);

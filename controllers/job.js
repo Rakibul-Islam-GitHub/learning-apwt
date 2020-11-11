@@ -14,7 +14,16 @@ router.get('*',  (req, res, next)=>{
 router.get('/joblist', (req, res)=>{
 
 	jobModel.getAll(function(results){
-		res.render('job/joblist', {job: results});
+		console.log(results[0]);
+		let job= {
+			comname : results[0].companyname,
+			title : results[0].title,
+			location : results[0].location,
+			salary : results[0].salary,
+			image : results[0].image
+		}
+		console.log(job);
+		res.render('job/joblist', {jobs: results});
 	});
 
 });
@@ -27,12 +36,11 @@ router.get('/create', (req, res)=>{
 
 router.post('/create', (req, res)=>{
 	
-	
 			let job={
 				comname : req.body.comname,
 				title : req.body.title,
 				location : req.body.location,
-				salary: req.body.salary,
+				salary: req.body.salary
 			
 				
 
@@ -41,8 +49,9 @@ router.post('/create', (req, res)=>{
 
 				if(status){
 					console.log('job inserted');
-					res.redirect('/employer');
+					res.redirect('/job/joblist');
 				}else{
+					res.redirect('/employer');
 
 				}
 
@@ -51,17 +60,19 @@ router.post('/create', (req, res)=>{
 
 router.get('/edit/:id', (req, res)=>{
 
-	var user = {
-		username: 'test',
-		password: 'test',
+	jobModel.getAll(function(results){
 		
-	};
-	res.render('job/edit', user);
+		let job= results[0];
+		  
+		  res.render('job/edit', job);
+	});
 });
 
 router.post('/edit/:id', (req, res)=>{
+	
 
     let job={
+		id : req.params.id,
         comname : req.body.comname,
         title : req.body.title,
         location : req.body.location,
@@ -80,12 +91,24 @@ router.post('/edit/:id', (req, res)=>{
 
     });
 
-	res.redirect('/job/joblist');
+	//res.redirect('/job/joblist');
 });
 
 router.get('/delete/:id', (req, res)=>{
+	let id= req.params.id;
+
+	jobModel.getById(id, function(results){
+		console.log(results[0].name);
+		var comname = results[0].companyname;
+		var title = results[0].title;
+		var location = results[0].location;
+
+		res.render('job/delete', {comname: results[0].companyname, title: results[0].title, location: results[0].location, salary: results[0].salary});
+
+		
+	});
 	
-	res.render('job/delete', user);
+	
 });
 
 router.post('/delete/:id', (req, res)=>{
