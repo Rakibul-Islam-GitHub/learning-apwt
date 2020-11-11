@@ -1,5 +1,6 @@
 const express 	= require('express');
 const jobModel = require.main.require('./models/jobModel');
+const { check, validationResult } = require('express-validator');
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
@@ -69,28 +70,46 @@ router.get('/edit/:id', (req, res)=>{
 	});
 });
 
-router.post('/edit/:id', (req, res)=>{
+router.post('/edit/:id',  [
+    check('comname').not().isEmpty().withMessage('Please fill all fields!'),
+	check('title', 'Please enter the title ').not().isEmpty(),
+	check('location').not().isEmpty().withMessage(' can not be null'),
+	check('salary').not().isEmpty().withMessage('This field can not be null'),
+	
+    
+  ], (req, res)=>{
+	const errors = validationResult(req);
+    console.log(errors);
+
+    if (!errors.isEmpty()) {
+		
+      return res.status(422).json(errors.array());
+    } else{
+		
+		let job={
+			id : req.params.id,
+			comname : req.body.comname,
+			title : req.body.title,
+			location : req.body.location,
+			salary: req.body.salary,
+		
+		
+		};
+		jobModel.update(job, function(status){
+	
+			if(status){
+				console.log('job updated');
+				res.redirect('/job/joblist');
+			}else{
+	
+			}
+	
+		});
+
+	}
+
 	
 
-    let job={
-		id : req.params.id,
-        comname : req.body.comname,
-        title : req.body.title,
-        location : req.body.location,
-        salary: req.body.salary,
-    
-    
-    };
-    jobModel.update(job, function(status){
-
-        if(status){
-            console.log('job updated');
-            res.redirect('/job/joblist');
-        }else{
-
-        }
-
-    });
 
 	//res.redirect('/job/joblist');
 });

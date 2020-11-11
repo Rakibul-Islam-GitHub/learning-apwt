@@ -1,41 +1,4 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>Create hob post</title>
-</head>
-<body>
-	<form method="post">
-		<fieldset>
-			<legend>Create New job</legend>
-			<table>
-				<tr>
-					<td>Company Name</td>
-					<td><input type="text" name="comname"></td>
-				</tr>
-				<tr>
-					<td>Job tile</td>
-					<td><input type="text" name="title"></td>
-				</tr>
-				<tr>
-					<td>Location</td>
-					<td><input type="text" name="location"></td>
-				</tr>
-				<tr>
-					<td>Salary</td>
-					<td><input type="text" name="salary"></td>
-				</tr>
-				
-				
-				<tr>
-					<td></td>
-					<td><input type="submit" name="submit" value="Submit"></td>
-				</tr>
-			</table>
-		</fieldset>
-	</form>
-	<a href="/employer">Back</a>
-</body>
-</html> -->
+
 
 <!DOCTYPE html>
 <html>
@@ -65,23 +28,23 @@
 				  <div class="row align-items-center">
 					<div class="col mt-1">
 						<form method="POST">
-							<input type="text" class="form-control" name="comname" placeholder="Company Name">
+							<input type="text" class="form-control" required name="comname" placeholder="Company Name">
 					</div>
 				  </div>
 				  <div class="row align-items-center">
 					<div class="col mt-4">
 						
-							<input type="text" class="form-control" name="title" placeholder="Job Title">
+							<input type="text" class="form-control" required name="title" placeholder="Job Title">
 					</div>
 				  </div>
 				  <div class="row align-items-center mt-4">
 					<div class="col">
-					  <input type="text" class="form-control" name="location" placeholder="Location">
+					  <input type="text" class="form-control" required name="location" placeholder="Location">
 					</div>
 				  </div>
 				  <div class="row align-items-center mt-4">
 					<div class="col">
-					  <input type="text" class="form-control" name="salary" placeholder="Salary">
+					  <input type="text" class="form-control" required name="salary" placeholder="Salary">
 					</div>
 					
 				  </div>

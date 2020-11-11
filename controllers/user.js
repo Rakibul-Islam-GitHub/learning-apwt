@@ -1,5 +1,6 @@
 const express 	= require('express');
 const userModel		= require.main.require('./models/userModel');
+const { check, validationResult } = require('express-validator');
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
@@ -15,28 +16,49 @@ router.get('/create', (req, res)=>{
 });
 
 
-router.post('/create', (req, res)=>{
+router.post('/create', [
+    check('name').not().isEmpty().withMessage('Please fill all fields!'),
+	check('password', 'Please enter Your password ').not().isEmpty(),
+	check('company').not().isEmpty().withMessage(' can not be null'),
+	check('contact').not().isEmpty().withMessage('This field can not be null'),
+	check('username').not().isEmpty().withMessage('This field can not be null'),
+    
+  ], (req, res)=>{
+
+	const errors = validationResult(req);
+    console.log(errors);
+
+    if (!errors.isEmpty()) {
+		
+      return res.status(422).json(errors.array());
+    } else {
+		let user={
+			
+			name : req.body.name,
+			company : req.body.company,
+			contact : req.body.contact,
+			username: req.body.username,
+			password: req.body.password
+			
+
+		};
+		userModel.insert(user, function(status){
+
+			if(status){
+				console.log('user inserted');
+				res.redirect('/home');
+			}else{
+
+			}
+
+		});
+
+		
+      
+    }
 	
 	
-			let user={
-				name : req.body.name,
-				company : req.body.company,
-				contact : req.body.contact,
-				username: req.body.username,
-				password: req.body.password
-				
-
-			};
-			userModel.insert(user, function(status){
-
-				if(status){
-					console.log('user inserted');
-					res.redirect('/home');
-				}else{
-
-				}
-
-			});
+			
 });
 
 router.get('/edit/:id', (req, res)=>{
@@ -58,31 +80,49 @@ router.get('/edit/:id', (req, res)=>{
   
 });
 
-router.post('/edit/:id', (req, res)=>{
+router.post('/edit/:id', [
+    check('name').not().isEmpty().withMessage('Please fill all fields!'),
+	check('password', 'Please enter Your password ').not().isEmpty(),
+	check('company').not().isEmpty().withMessage(' can not be null'),
+	check('contact').not().isEmpty().withMessage('This field can not be null'),
+	check('username').not().isEmpty().withMessage('This field can not be null'),
+    
+  ],  (req, res)=>{
 
-	let user={
-		id : req.params.id,
-		name : req.body.name,
-		company : req.body.company,
-		contact : req.body.contact,
-		username: req.body.username,
-		password: req.body.password
+	const errors = validationResult(req);
+    console.log(errors);
+
+    if (!errors.isEmpty()) {
 		
+      return res.status(422).json(errors.array());
+    } else{
+		let user={
+			id : req.params.id,
+			name : req.body.name,
+			company : req.body.company,
+			contact : req.body.contact,
+			username: req.body.username,
+			password: req.body.password
+			
+	
+		};
+		console.log(user);
+	
+		userModel.update(user, function(status){
+	
+	
+			if(status){
+				console.log('user updated');
+				res.redirect('/home/employerlist');
+			}else{
+	
+			}
+	
+		});
 
-	};
-	console.log(user);
+	}
 
-	userModel.update(user, function(status){
-
-
-        if(status){
-            console.log('user updated');
-            res.redirect('/home/employerlist');
-        }else{
-
-        }
-
-	});
+	
 	
 	// res.redirect('/home/userlist');
 });
