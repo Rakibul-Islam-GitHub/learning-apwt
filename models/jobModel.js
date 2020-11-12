@@ -47,6 +47,14 @@ module.exports= {
 		});
 
 	},
+
+	search: function(content, callback){
+		var sql = 'SELECT title from job where title like "%'+content+'%"';
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+
+	},
 	delete: function(id, callback){
 
         let sql= 'delete from job where id= "'+id.id+'" ';

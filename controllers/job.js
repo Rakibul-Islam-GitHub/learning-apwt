@@ -30,6 +30,27 @@ router.get('/joblist', (req, res)=>{
 });
 
 
+router.get('/search', function(req, res){
+	res.render('job/search');
+
+});
+
+router.post('/search', function(req, res){
+	//console.log(req.body.query);
+	let content= req.body.query;
+
+	jobModel.search(content, function(results){
+		//res.render('home/employerlist', {users: results});
+		//console.log(results[0]);
+		res.json(results[0]);
+	});
+
+
+	
+
+});
+
+
 router.get('/create', (req, res)=>{
 	res.render('job/create');
 });

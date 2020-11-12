@@ -48,6 +48,14 @@ module.exports= {
 		});
 
 	},
+
+	search: function(content, callback){
+		var sql = 'SELECT name from user where name like "%'+content+'%"';
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+
+	},
 	delete: function(id, callback){
 		let sql= 'delete from user where id= "'+id+'" ';
 		db.execute(sql, function(status){
