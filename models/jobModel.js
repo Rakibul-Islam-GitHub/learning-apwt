@@ -26,7 +26,7 @@ module.exports= {
 		});
 	},
 	insert: function(job, callback){
-		let sql= 'insert into job (companyname, title,location, salary) values ("'+job.comname+'","'+job.title+'","'+job.location+'","'+job.salary+'")';
+		let sql= 'insert into job (companyname, title,location, salary, image) values ("'+job.comname+'","'+job.title+'","'+job.location+'","'+job.salary+'","'+job.image+'" )';
 		db.execute(sql, function(status){
 			if(status){
 				callback(true);
@@ -57,7 +57,7 @@ module.exports= {
 	},
 	delete: function(id, callback){
 
-        let sql= 'delete from job where id= "'+id.id+'" ';
+        let sql= 'delete from job where id= "'+id+'" ';
 		db.execute(sql, function(status){
 			if(status){
 				callback(true);

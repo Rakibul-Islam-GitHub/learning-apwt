@@ -8,6 +8,12 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 </head>
+<style>
+	.jobtable{
+		margin-left: 29%;
+
+	}
+</style>
 <body>
 	<div id="list-table2">
 		<h1> Job list</h1>
@@ -19,7 +25,8 @@
 	<a class="myButton btn-red" href="/logout">logout</a> 
 	<br>
 	
-		<table class="mt-4">
+	  
+		<table class="mt-4 jobtable">
 			<tr>
 				
 			<th>ID</th>
@@ -35,7 +42,7 @@
 			jobs.forEach( function(job){ %>
 			<tr>
 				<td><%= job.id %></td>
-				<td><%= job.image %></td>
+				<td><img src="/abc/image/<%= job.image %>" width="22" height="22" alt="pic"></td>
 				<td><%= job.companyname %></td>
 				<td><%= job.title %></td>
 				<td><%= job.location %></td>

@@ -1,6 +1,9 @@
-const express 	= require('express');
+const express 	        = require('express');
+const multer            = require('multer');
+const path              = require('path');
 const jobModel = require.main.require('./models/jobModel');
 const { check, validationResult } = require('express-validator');
+
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
@@ -10,6 +13,17 @@ router.get('*',  (req, res, next)=>{
 		next();
 	}
 });
+
+var storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+	  cb(null, 'assets/image/')
+	},
+	filename: function (req, file, cb) {
+	  cb(null, Date.now() + path.extname(file.originalname)) 
+	}
+  });
+  
+  var upload = multer({ storage: storage });
 
 
 router.get('/joblist', (req, res)=>{
@@ -56,9 +70,12 @@ router.get('/create', (req, res)=>{
 });
 
 
-router.post('/create', (req, res)=>{
+router.post('/create', upload.single('pic'), (req, res)=>{
+	       
+
 	
 			let job={
+				image :  req.file.filename,
 				comname : req.body.comname,
 				title : req.body.title,
 				location : req.body.location,
@@ -153,14 +170,21 @@ router.get('/delete/:id', (req, res)=>{
 });
 
 router.post('/delete/:id', (req, res)=>{
-    let id={
-        id : req.params.id
+    let id=  req.params.id;
 
-    };
+    
 
-    jobModel.delete(function(id){
+    jobModel.delete(id, function(status){
+
+		if(status){
+			res.redirect('/job/joblist');
+
+		}else{
+			res.redirect('/employer');
+
+		}
         
-        res.redirect('/job/joblist');
+        
 	});
 
 	
