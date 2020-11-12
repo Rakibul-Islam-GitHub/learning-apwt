@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2020 at 08:21 PM
+-- Generation Time: Nov 12, 2020 at 03:11 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -42,9 +42,10 @@ CREATE TABLE `job` (
 --
 
 INSERT INTO `job` (`id`, `companyname`, `title`, `location`, `salary`, `image`) VALUES
-(1, 'AIUB', 'NodeJs Dev', 'Dhaka', '100000', ''),
-(2, 'AIUB', 'Web Developer', 'Dhaka', '20000', ''),
-(3, 'ARbyte', 'Laravel Dev', 'Dhaka', '60000', '');
+(1, 'AIUB', 'NodeJs Dev', 'Dhaka', '100000', '1605190205072.png'),
+(2, 'AIUB', 'Web Developer', 'Dhaka', '20000', '1605190192532.png'),
+(3, 'ARbyte', 'Laravel Dev', 'Dhaka', '60000', '1605190172670.png'),
+(5, 'ARbyte tech', 'Graphics Designer', 'Gazipur', '60000', '1605187621284.png');
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,7 @@ INSERT INTO `user` (`id`, `name`, `company`, `contact`, `username`, `password`) 
 (1, 'Admin', 'AIUB', '01940011111', 'admin', '123'),
 (2, 'Rakibul', 'AIUB', '01943798593', 'rakibul', '123'),
 (3, 'Rakibul', 'ARbyte', '01943798593', 'rakibul', '12345'),
-(5, 'Test', 'test', '01943798593', 'test', '123');
+(5, 'Test', 'NEW', '01943798593', 'test', '123');
 
 --
 -- Indexes for dumped tables
@@ -95,13 +96,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -64,7 +64,7 @@
 				  </div>
 				  <div class="row align-items-center">
 					<div class="col mt-1">
-						<form method="POST">
+						<form method="POST" enctype="multipart/form-data">
 							<input type="text" class="form-control" name="comname" value="<%=companyname%>">
 					</div>
 				  </div>
@@ -82,6 +82,13 @@
 				  <div class="row align-items-center mt-4">
 					<div class="col">
 					  <input type="text" class="form-control" name="salary" value="<%=salary%>">
+					</div>
+					
+				  </div>
+				  <div class="row align-items-center mt-4">
+					<div class="col">
+					  
+						<input type="file" class="form-control"  required name="pic" />
 					</div>
 					
 				  </div>

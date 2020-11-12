@@ -37,7 +37,7 @@ module.exports= {
 
 	},
 	update:function(job, callback){
-        let sql= 'update job set companyname= "'+job.comname+'", title= "'+job.title+'", location= "'+job.location+'", salary= "'+job.salary+'" where id= "'+job.id+'"';
+        let sql= 'update job set companyname= "'+job.comname+'", title= "'+job.title+'", location= "'+job.location+'", salary= "'+job.salary+'", image="'+job.image+'" where id= "'+job.id+'"';
 		db.execute(sql, function(status){
 			if(status){
 				callback(true);

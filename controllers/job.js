@@ -108,7 +108,7 @@ router.get('/edit/:id', (req, res)=>{
 	});
 });
 
-router.post('/edit/:id',  [
+router.post('/edit/:id', upload.single('pic'),  [
     check('comname').not().isEmpty().withMessage('Please fill all fields!'),
 	check('title', 'Please enter the title ').not().isEmpty(),
 	check('location').not().isEmpty().withMessage(' can not be null'),
@@ -125,6 +125,7 @@ router.post('/edit/:id',  [
     } else{
 		
 		let job={
+			image : req.file.filename,
 			id : req.params.id,
 			comname : req.body.comname,
 			title : req.body.title,
